@@ -20,9 +20,11 @@ json_object_counter = 0
 
 for filename in os.listdir('sentences'):
     if 'json' in filename:
+        print('Loading', filename)
         with open('sentences/' + filename, encoding='utf-8') as f:
             lines = f.readlines()
 
+        print('Processing', filename)
         temp_string = ''
         for line in lines:
             # these aren't proper json files, they have multiple top level blocks, so
