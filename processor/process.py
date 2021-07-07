@@ -7,6 +7,8 @@ word_dictionary = {}
 
 stem_tags = ['NNP', 'PRP', 'NNPS', 'UH', 'PRP$']
 
+json_object_counter = 0
+
 for filename in os.listdir('sentences'):
     if 'json' in filename:
         with open('sentences/' + filename, encoding='utf-8') as f:
@@ -16,6 +18,7 @@ for filename in os.listdir('sentences'):
         for line in lines:
             # these aren't proper json files, they have multiple top level blocks, so
             if line is '\n':
+                json_object_counter += 1
                 test = json.loads(temp_string)
                 compressed = test['compression']
                 words_by_id = {}
@@ -51,6 +54,7 @@ for filename in os.listdir('sentences'):
                 important_parts.append(compressed)
                 # Reset temp_string
                 temp_string = ''
-                #print('Processed headline:', compressed['text'])
+                if json_object_counter % 500 == 0:
+                    print('Processed', json_object_counter, 'lines so far')
             else:
                 temp_string += line
