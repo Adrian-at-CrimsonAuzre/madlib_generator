@@ -1,13 +1,16 @@
 import setuptools
 
+with open("README.md", "r", encoding="utf-8") as f:
+    long_description = f.read()
+
 setuptools.setup(
         name="madlib",
         version="0.0.1",
         author="Adrian-at-CrimsonAuzre",
         author_email="adrian@crimsonazure.com",
         description="A small example package",
-        # long_description=long_description,
-        # long_description_content_type="text/markdown",
+        long_description=long_description,
+        long_description_content_type="text/markdown",
         url="https://github.com/Adrian-at-CrimsonAuzre/madlib_generator",
         classifiers=[
                 "Programming Language :: Python :: 3",
