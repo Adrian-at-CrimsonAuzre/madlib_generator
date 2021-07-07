@@ -18,6 +18,10 @@ replacement_tags = ['NN', 'VBN', 'NNP', 'VB', 'VBD', 'NNS', 'PRP', 'VPB', 'VBG',
 
 json_object_counter = 0
 
+# The better way of doing this is to read all the files, then send them to their own thread for processing.
+# The problem is that I'm lazy and I don't want to lol.
+# This should only need to be run once to generate the two json files.
+
 for filename in os.listdir('sentences'):
     if 'json' in filename:
         print('Loading', filename)
