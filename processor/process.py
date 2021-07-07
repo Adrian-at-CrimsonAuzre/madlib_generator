@@ -14,6 +14,8 @@ word_dictionary = {}
 
 stem_tags = ['NNP', 'PRP', 'NNPS', 'UH', 'PRP$']
 
+replacement_tags = ['NN', 'VBN', 'NNP', 'VB', 'VBD', 'NNS', 'PRP', 'VPB', 'VBG', 'RB', 'VBZ', 'NNPS', 'ADD', 'JJS', 'JJR', 'RBS', 'PRP$']
+
 json_object_counter = 0
 
 for filename in os.listdir('sentences'):
@@ -53,12 +55,15 @@ for filename in os.listdir('sentences'):
                     # Some tags should use form, some should use stem
                     if c['tag'] in stem_tags:
                         word_dictionary[c['tag']].add(c['stem'])
-                        compressed['words'][i] = (c['stem'], c['tag'])
+                        word = c['stem']
                     else:
                         word_dictionary[c['tag']].add(c['form'])
-                        compressed['words'][i] = (c['form'], c['tag'])
+                        word = c['form']
 
-                important_parts.append(compressed)
+                    if c['tag'] in replacement_tags:
+                        compressed['text'] = compressed['text'].replace(word, '[[' + c['tag'] + ']]')
+
+                important_parts.append(compressed.pop('text'))
                 # Reset temp_string
                 temp_string = ''
                 if json_object_counter % 500 == 0:
