@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 setuptools.setup(
-        name="madlib",
+        name="madlib_generator",
         version="0.1.1",
         author="Adrian-at-CrimsonAuzre",
         author_email="adrian@crimsonazure.com",
