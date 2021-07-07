@@ -55,6 +55,6 @@ for filename in os.listdir('sentences'):
                 # Reset temp_string
                 temp_string = ''
                 if json_object_counter % 500 == 0:
-                    print('Processed', json_object_counter, 'lines so far')
+                    print('Processed', json_object_counter, 'objects so far')
             else:
                 temp_string += line
