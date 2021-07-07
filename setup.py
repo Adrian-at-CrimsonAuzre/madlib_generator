@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setuptools.setup(
         name="madlib",
-        version="0.1.0",
+        version="0.1.1",
         author="Adrian-at-CrimsonAuzre",
         author_email="adrian@crimsonazure.com",
         description="A small example package",
