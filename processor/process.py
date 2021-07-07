@@ -77,8 +77,8 @@ if not os.path.exists('processed'):
     os.makedirs('processed')
 
 print('Writing sentences to processed/sentences.json')
-with open('processed/sentences.json', 'w') as f:
+with open('processed/sentences.json', 'w', encoding='utf-8') as f:
     json.dump(important_parts, f)
 print('Writing dictionary to processed/dictionary.json')
-with open('processed/dictionary.json', 'w') as f:
+with open('processed/dictionary.json', 'w', encoding='utf-8') as f:
     json.dump(word_dictionary, f, default=set_default)
