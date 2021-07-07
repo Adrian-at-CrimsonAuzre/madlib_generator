@@ -1,6 +1,13 @@
 import os
 import json
 
+
+def set_default(obj):
+    if isinstance(obj, set):
+        return list(obj)
+    raise TypeError
+
+
 important_parts = []
 # Sorted by part of speech tags https://sites.google.com/site/partofspeechhelp/home#TOC-Part-of-Speech-Tags
 word_dictionary = {}
@@ -58,3 +65,13 @@ for filename in os.listdir('sentences'):
                     print('Processed', json_object_counter, 'objects so far')
             else:
                 temp_string += line
+
+if not os.path.exists('processed'):
+    os.makedirs('processed')
+
+print('Writing sentences to processed/sentences.json')
+with open('processed/sentences.json', 'w') as f:
+    json.dump(important_parts, f)
+print('Writing dictionary to processed/dictionary.json')
+with open('processed/dictionary.json', 'w') as f:
+    json.dump(word_dictionary, f, default=set_default)
