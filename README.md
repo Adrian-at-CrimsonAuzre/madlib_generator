@@ -1,4 +1,4 @@
-# madlib_generator
+# madlib
 I made this in a few hours because I was bored and thought it would be funny. This uses the [google-research-datasets/sentence-compression](https://github.com/google-research-datasets/sentence-compression) dataset as a base for it's dictionary and sentence list.
 
 ## Usage
