@@ -42,14 +42,14 @@ for filename in os.listdir('sentences'):
                 for i, c in compressed['words'].items():
                     if c['tag'] not in word_dictionary:
                         word_dictionary[c['tag']] = set()
-                    tag = c.pop('tag')
-                    compressed['words'][i] = c
 
                     # Some tags should use form, some should use stem
-                    if tag in stem_tags:
-                        word_dictionary[tag].add(c['stem'])
+                    if c['tag'] in stem_tags:
+                        word_dictionary[c['tag']].add(c['stem'])
+                        compressed['words'][i] = (c['stem'], c['tag'])
                     else:
-                        word_dictionary[tag].add(c['form'])
+                        word_dictionary[c['tag']].add(c['form'])
+                        compressed['words'][i] = (c['form'], c['tag'])
 
                 important_parts.append(compressed)
                 # Reset temp_string
