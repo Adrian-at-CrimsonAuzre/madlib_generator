@@ -9,7 +9,7 @@ def set_default(obj):
 
 
 madlibbed_sentences = []
-# Sorted by part of speech tags https://sites.google.com/site/partofspeechhelp/home#TOC-Part-of-Speech-Tags
+# Sorted by part of speech tags https://web.archive.org/web/2/https://sites.google.com/site/partofspeechhelp/home#TOC-NNS
 word_dictionary = {}
 
 stem_tags = ['NNP', 'PRP', 'NNPS', 'UH', 'PRP$']
