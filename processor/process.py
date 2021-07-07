@@ -80,9 +80,13 @@ for filename in os.listdir('sentences'):
 if not os.path.exists('processed'):
     os.makedirs('processed')
 
-print('Writing sentences to processed/sentences.json')
-with open('processed/sentences.json', 'w', encoding='utf-8') as f:
-    json.dump(madlibbed_sentences, f)
-print('Writing dictionary to processed/dictionary.json')
-with open('processed/dictionary.json', 'w', encoding='utf-8') as f:
-    json.dump(word_dictionary, f, default=set_default)
+print('Writing sentences to processed/sentences.json.gz')
+with open('processed/sentences.json.gz', 'wb') as f:
+    f.write(gzip.compress(bytes(json.dumps(madlibbed_sentences, ensure_ascii=False).encode('utf-8'))))
+print('Writing dictionary to processed/dictionary.json.gz')
+with open('processed/dictionary.json.gz', 'wb') as f:
+    f.write(gzip.compress(bytes(json.dumps(word_dictionary, default=set_default, ensure_ascii=False).encode('utf-8'))))
+
+print('Please load file by using the following blurb')
+print('with open("processed/dictionary.json.gz", "rb") as f:')
+print('\t values = json.loads(gzip.decompress(f.read()))')
