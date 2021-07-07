@@ -5,7 +5,7 @@ important_parts = []
 # Sorted by part of speech tags https://sites.google.com/site/partofspeechhelp/home#TOC-Part-of-Speech-Tags
 word_dictionary = {}
 
-
+stem_tags = ['NNP', 'PRP', 'NNPS', 'UH', 'PRP$']
 
 for filename in os.listdir('sentences'):
     if 'json' in filename:
@@ -38,11 +38,15 @@ for filename in os.listdir('sentences'):
                 # Turn it into a list. We only used the dict so we didn't have to deal with repeats
                 for i, c in compressed['words'].items():
                     if c['tag'] not in word_dictionary:
-                        word_dictionary[c['tag']] = []
+                        word_dictionary[c['tag']] = set()
                     tag = c.pop('tag')
                     compressed['words'][i] = c
-                    word_dictionary[tag].append(c)
 
+                    # Some tags should use form, some should use stem
+                    if tag in stem_tags:
+                        word_dictionary[tag].add(c['stem'])
+                    else:
+                        word_dictionary[tag].add(c['form'])
 
                 important_parts.append(compressed)
                 # Reset temp_string
