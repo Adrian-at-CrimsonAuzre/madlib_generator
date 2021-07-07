@@ -8,7 +8,7 @@ def set_default(obj):
     raise TypeError
 
 
-important_parts = []
+madlibbed_sentences = []
 # Sorted by part of speech tags https://sites.google.com/site/partofspeechhelp/home#TOC-Part-of-Speech-Tags
 word_dictionary = {}
 
@@ -69,7 +69,7 @@ for filename in os.listdir('sentences'):
                     if c['tag'] in replacement_tags:
                         compressed['text'] = compressed['text'].replace(word, '[[' + c['tag'] + ']]')
 
-                important_parts.append(compressed.pop('text'))
+                madlibbed_sentences.append(compressed.pop('text'))
                 # Reset temp_string
                 temp_string = ''
                 if json_object_counter % 500 == 0:
@@ -82,7 +82,7 @@ if not os.path.exists('processed'):
 
 print('Writing sentences to processed/sentences.json')
 with open('processed/sentences.json', 'w', encoding='utf-8') as f:
-    json.dump(important_parts, f)
+    json.dump(madlibbed_sentences, f)
 print('Writing dictionary to processed/dictionary.json')
 with open('processed/dictionary.json', 'w', encoding='utf-8') as f:
     json.dump(word_dictionary, f, default=set_default)
